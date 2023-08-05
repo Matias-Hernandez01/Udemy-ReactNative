@@ -1,6 +1,6 @@
 import React from "react";
 
-export const BoxObjectModel = () => {
+export const BoxObjectModelScreen = () => {
   return (
     <div>BoxObjectModel</div>
   )
