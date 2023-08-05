@@ -1,7 +1,10 @@
 import React from "react";
+import { Text, View } from "react-native";
 
 export const BoxObjectModelScreen = () => {
   return (
-    <div>BoxObjectModel</div>
+    <View>
+      <Text>Box Object Model</Text>
+    </View>
   )
 }
