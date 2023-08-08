@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
     textAlign:"right",
     color:"white",
     fontSize:60,
+    marginBottom:20
   },
   resultadoPequeno:{
     color:"rgba(255,255,255,0.5)",
@@ -22,21 +23,10 @@ export const styles = StyleSheet.create({
   },
   buttonsContainer:{
     flexDirection:"row",
-    justifyContent:"space-between",
+    justifyContent:"center",
+    marginBottom:18,
     paddingHorizontal:10,
   },
-  button:{
-    backgroundColor:"#9B9B9B",
-    height:80,
-    width:80,
-    borderRadius:40,
-    justifyContent:"center",
-    alignItems:"center",
-  },
-  bottonTexto:{
-    color:"black",
-    fontSize:40,
-    fontWeight:"300",
-  }
+
 
 });
