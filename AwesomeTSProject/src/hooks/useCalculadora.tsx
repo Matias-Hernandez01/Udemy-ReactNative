@@ -92,8 +92,16 @@ export const useCalculadora = () => {
      const num1 = Number(numero);
      const num2 = Number(numeroAnterior);
 
+    console.log("num1",num1);
+    console.log("num2",num2);
+    
+
+     if(num1 && !num2){
+      setNumero(`${num1}`)
+     }
+
      switch(ultimaOperacion.current){
-      case Operadores.sumar: {
+      case Operadores.sumar: { 
           setNumero(`${num1 + num2}`)
         break;
       }
@@ -106,13 +114,15 @@ export const useCalculadora = () => {
         break;
       }
       case Operadores.dividir:
-        if(num2 === 0){
+        
+        if(num1 === 0){
           setNumero('0')
+        } else{
+          setNumero(`${num2 / num1}`)
         }
-        setNumero(`${num2 / num1}`)
       break;
      }
-     setNumeroAnterior("0")
+     setNumeroAnterior(`0`)
   }
 
   return  {
