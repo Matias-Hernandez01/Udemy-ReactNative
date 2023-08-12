@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import {View, Text} from "react-native";
-import {styles} from '../theme/appTheme';
 import { StackScreenProps } from '@react-navigation/stack/lib/typescript/src/types';
 // import { useNavigation } from "@react-navigation/native";
 import { RootStackParams } from "../navigator/StackNavigator";
@@ -25,7 +24,7 @@ export const PersonaScreen = ({route, navigation}: Props) => {
   
   
   return (
-    <View style={styles.globalMargin} >
+    <View style={{marginHorizontal:20}} >
       <Text style={{fontSize:20, fontWeight:"600", color:"black"}}>{JSON.stringify(params, null,3)}</Text>
     </View>
   )
