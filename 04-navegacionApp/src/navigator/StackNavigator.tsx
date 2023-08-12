@@ -29,10 +29,10 @@ const StackNavigator = () => {
       }
     }}
     >
-      <Stack.Screen  name="Pagina1Screen" options={{title:"Página1"}}  component={Pagina1Screen} />
-      <Stack.Screen  name="Pagina2Screen" options={{title:"Página2"}}  component={Pagina2Screen} />
-      <Stack.Screen  name="Pagina3Screen" options={{title:"Página3"}}  component={Pagina3Screen} />
-      <Stack.Screen  name="PersonaScreen" options={{title:"Persona"}}  component={PersonaScreen} />
+      <Stack.Screen  name="Pagina1Screen" component={Pagina1Screen} />
+      <Stack.Screen  name="Pagina2Screen" component={Pagina2Screen} />
+      <Stack.Screen  name="Pagina3Screen" component={Pagina3Screen} />
+      <Stack.Screen  name="PersonaScreen" component={PersonaScreen} />
     </Stack.Navigator>
   )
 }
