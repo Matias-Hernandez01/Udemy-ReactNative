@@ -1,46 +1,95 @@
-import React from "react";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React from 'react';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
-import {Text} from "react-native";
-import { colors } from '../theme/appTheme';
+import {Text, Platform} from 'react-native';
+import {colors} from '../theme/appTheme';
 import StackNavigator from './StackNavigator';
-import { Tab1Screen } from "../screens/Tab1Screen";
-import { Tab2Screen } from "../screens/Tab2Screen";
+import {Tab1Screen} from '../screens/Tab1Screen';
+import {Tab2Screen} from '../screens/Tab2Screen';
 
+export const Tabs = () => {
+  return Platform.OS === 'ios' ? <TabsIos /> : <TabsAndroid />;
+};
 
-const Tab = createBottomTabNavigator();
+const BottomTabsAndroid = createMaterialBottomTabNavigator();
 
-export const Tabs =() => {
+function TabsAndroid() {
   return (
-    <Tab.Navigator 
-    sceneContainerStyle={{backgroundColor:"#b2dafa"}}
-      tabBarOptions={{
-       tabBarActiveTintColor: colors.primary,
-       tabBarStyle:{
-        borderTopColor:colors.primary,
-        elevation:0
-       },
-       tabBarLabelStyle:{
-        fontSize:15,
-       },
+    <BottomTabsAndroid.Navigator
+      sceneAnimationEnabled={ true}
+      barStyle={{
+        backgroundColor:"#fdfd96"
       }}
-      screenOptions={ ({route}) => ({
-        tabBarIcon: ({color, size, focused})=>{
-          console.log(route.name)
-          if(focused){
-            return <Text style={{color:"red", fontSize:size + 2}} >Hello !</Text>
-          } else{
+      screenOptions={({route}) => ({
+        tabBarActiveTintColor: colors.primary,
+        tabBarStyle: {
+          borderTopColor: colors.primary,
+          elevation: 0,
+        },
+        tabBarLabelStyle: {
+          fontSize: 15,
+        },
+        tabBarIcon: ({color, focused}) => {
+          console.log(route.name);
+          if (focused) {
             return (
-             <Text>T1</Text>
-          )}
+              <Text style={{color: 'red'}}>¡Hola!</Text>
+            );
+          } else {
+            return <Text>T1</Text>;
           }
-
-      }) }
+        },
+      })}
     >
-      {/* <Tab.Screen name="Tab1Screen"  options={{title:"Tag1", tabBarIcon:(props)=><Text style={{color: props.color}} >T1</Text>}}  component={Tab1Screen} /> */}
-      <Tab.Screen name="Tab1Screen"  options={{title:"Tag1"}}  component={Tab1Screen} />
-      <Tab.Screen name="Tab2Screen"  options={{title:"Tag2"}}  component={Tab2Screen} />
-      <Tab.Screen name="StackNavigator"  options={{title:"Tag3"}}  component={StackNavigator} />
-    </Tab.Navigator>
+      <BottomTabsAndroid.Screen name="Tab1Screen" options={{title: 'Tag1'}} component={Tab1Screen}/>
+      <BottomTabsAndroid.Screen name="Tab2Screen" options={{title: 'Tag2'}} component={Tab2Screen}/>
+      <BottomTabsAndroid.Screen name="StackNavigator" options={{title: 'Tag3'}} component={StackNavigator}/>
+    </BottomTabsAndroid.Navigator>
   );
 }
+
+const BottomTabsIos = createBottomTabNavigator();
+
+export const TabsIos = () => {
+  return (
+    <BottomTabsIos.Navigator
+      sceneContainerStyle={{backgroundColor: '#b2dafa'}}
+      screenOptions={({route}) => ({
+        tabBarActiveTintColor: colors.primary,
+        tabBarStyle: {
+          borderTopColor: colors.primary,
+          elevation: 0,
+        },
+        tabBarLabelStyle: {
+          fontSize: 15,
+        },
+        tabBarIcon: ({color, size, focused}) => {
+          console.log(route.name);
+          if (focused) {
+            return (
+              <Text style={{color: 'red', fontSize: size + 2}}>¡Hola!</Text>
+            );
+          } else {
+            return <Text>T1</Text>;
+          }
+        },
+      })}>
+      <BottomTabsIos.Screen
+        name="Tab1Screen"
+        options={{title: 'Tag1'}}
+        component={Tab1Screen}
+      />
+      <BottomTabsIos.Screen
+        name="Tab2Screen"
+        options={{title: 'Tag2'}}
+        component={Tab2Screen}
+      />
+      <BottomTabsIos.Screen
+        name="StackNavigator"
+        options={{title: 'Tag3'}}
+        component={StackNavigator}
+      />
+    </BottomTabsIos.Navigator>
+  );
+};
