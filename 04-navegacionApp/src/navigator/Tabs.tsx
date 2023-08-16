@@ -1,13 +1,13 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-
 import {Text, Platform} from 'react-native';
-import {colors} from '../theme/appTheme';
-import StackNavigator from './StackNavigator';
+
 import {Tab1Screen} from '../screens/Tab1Screen';
-import {Tab2Screen} from '../screens/Tab2Screen';
-// import { TopTapNavigator } from '../navigator/';
+
+import StackNavigator from './StackNavigator';
+import {colors} from '../theme/appTheme';
+import { TopTapNavigator } from '../navigator/TopTapNavigator';
 
 export const Tabs = () => {
   return Platform.OS === 'ios' ? <TabsIos /> : <TabsAndroid />;
@@ -32,7 +32,6 @@ function TabsAndroid() {
           fontSize: 15,
         },
         tabBarIcon: ({color, focused}) => {
-          console.log(route.name);
           if (focused) {
             return (
               <Text style={{color: 'red'}}>¡Hola!</Text>
@@ -44,7 +43,7 @@ function TabsAndroid() {
       })}
     >
       <BottomTabsAndroid.Screen name="Tab1Screen" options={{title: 'Tag1'}} component={Tab1Screen}/>
-      {/* <BottomTabsAndroid.Screen name="Tab2Screen" options={{title: 'Tag2'}} component={TopTapNavigator}/> */}
+      <BottomTabsAndroid.Screen name="Tab2Screen" options={{title: 'Tag2'}} component={TopTapNavigator}/>
       <BottomTabsAndroid.Screen name="StackNavigator" options={{title: 'Tag3'}} component={StackNavigator}/>
     </BottomTabsAndroid.Navigator>
   );
