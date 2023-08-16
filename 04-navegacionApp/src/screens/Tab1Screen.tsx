@@ -12,7 +12,7 @@ export const Tab1Screen = () => {
   return (
     <View>
       <Text>Tab1Screen</Text>
-      <Icon name="rocket" size={30} color="#900" />
-    </View>
+      <Icon name="accessibility-outline" size={30} />
+    </View> 
   )
 }
