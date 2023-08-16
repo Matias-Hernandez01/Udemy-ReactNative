@@ -7,6 +7,7 @@ import {colors} from '../theme/appTheme';
 import StackNavigator from './StackNavigator';
 import {Tab1Screen} from '../screens/Tab1Screen';
 import {Tab2Screen} from '../screens/Tab2Screen';
+// import { TopTapNavigator } from '../navigator/';
 
 export const Tabs = () => {
   return Platform.OS === 'ios' ? <TabsIos /> : <TabsAndroid />;
@@ -43,7 +44,7 @@ function TabsAndroid() {
       })}
     >
       <BottomTabsAndroid.Screen name="Tab1Screen" options={{title: 'Tag1'}} component={Tab1Screen}/>
-      <BottomTabsAndroid.Screen name="Tab2Screen" options={{title: 'Tag2'}} component={Tab2Screen}/>
+      {/* <BottomTabsAndroid.Screen name="Tab2Screen" options={{title: 'Tag2'}} component={TopTapNavigator}/> */}
       <BottomTabsAndroid.Screen name="StackNavigator" options={{title: 'Tag3'}} component={StackNavigator}/>
     </BottomTabsAndroid.Navigator>
   );
@@ -80,11 +81,11 @@ export const TabsIos = () => {
         options={{title: 'Tag1'}}
         component={Tab1Screen}
       />
-      <BottomTabsIos.Screen
+      {/* <BottomTabsIos.Screen
         name="Tab2Screen"
         options={{title: 'Tag2'}}
-        component={Tab2Screen}
-      />
+        component={TopTapNavigator}
+      /> */}
       <BottomTabsIos.Screen
         name="StackNavigator"
         options={{title: 'Tag3'}}
