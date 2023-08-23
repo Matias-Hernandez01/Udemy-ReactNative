@@ -1,13 +1,19 @@
-import React, { useEffect } from "react"
-import {View, Text,ActivityIndicator} from "react-native"
-import { UseMovies } from "../hooks/UseMovies"
+import React from "react"
+import {View, ActivityIndicator, Dimensions} from "react-native"
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Carousel from 'react-native-snap-carousel';
+
+import { UseMovies } from "../hooks/useMovies"
+import { MovieCard } from "../components/MovieCard";
 
 
+const {width: windowWidth} = Dimensions.get("window")
 
 export const HomeScreen = () => {
 
   const {peliculasEnCine, isLoading} = UseMovies();
 
+  const {top} = useSafeAreaInsets()
 
   if(isLoading){
     return <View style={{flex:1, justifyContent:"center", alignItems:"center"}} >
@@ -16,8 +22,18 @@ export const HomeScreen = () => {
   }
 
   return (
-    <View>
-      <Text> HomeScreen</Text>
+    <View style={{marginTop:top + 20}} >
+     <View style={{height:440}} >
+      
+     <Carousel 
+      vertical={ false }
+      data={peliculasEnCine}
+      renderItem={({item}:any)=> <MovieCard movie={item}/>  }
+      sliderWidth={windowWidth}
+      itemWidth={300}
+      />
+     
+      </View>
     </View>
   )
 }
