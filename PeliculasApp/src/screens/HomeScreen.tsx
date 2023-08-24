@@ -1,17 +1,18 @@
 import React from "react"
-import {View, ActivityIndicator, Dimensions} from "react-native"
+import {View, ActivityIndicator, Dimensions, ScrollView} from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Carousel from 'react-native-snap-carousel';
 
 import { UseMovies } from "../hooks/useMovies"
 import { MovieCard } from "../components/MovieCard";
+import { FlatListComponents } from "../components/FlatListComponents";
 
 
 const {width: windowWidth} = Dimensions.get("window")
 
 export const HomeScreen = () => {
 
-  const {peliculasEnCine, isLoading} = UseMovies();
+  const {nowPlaying,popular,topRated, upcoming, isLoading} = UseMovies();
 
   const {top} = useSafeAreaInsets()
 
@@ -22,18 +23,27 @@ export const HomeScreen = () => {
   }
 
   return (
+
+    <ScrollView>
+
     <View style={{marginTop:top + 20}} >
-     <View style={{height:440}} >
       
+     <View style={{height:440}} >
      <Carousel 
       vertical={ false }
-      data={peliculasEnCine}
+      data={nowPlaying}
       renderItem={({item}:any)=> <MovieCard movie={item}/>  }
       sliderWidth={windowWidth}
       itemWidth={300}
+      inactiveSlideOpacity={0.9}
       />
-     
       </View>
-    </View>
+        
+      <FlatListComponents title="Popular" data={popular}/>
+      <FlatListComponents title="Top Rated" data={topRated}/>
+      <FlatListComponents title="Upcoming" data={upcoming}/>
+        
+      </View>
+    </ScrollView>
   )
 }
