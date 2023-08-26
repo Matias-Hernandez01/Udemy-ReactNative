@@ -1,19 +1,26 @@
+import React from "react";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { StackScreenProps } from "@react-navigation/stack";
-import React from "react-native";
-import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, ActivityIndicator } from 'react-native';
 import { RootStackParams } from "../navigation/Navigation";
-import { ScrollView } from "react-native-gesture-handler";
 
-import Icon from "react-native-vector-icons/Ionicons";
+import { useMovieDetail } from "../hooks/useMovieDetail";
+import { MovieDetails } from '../components/MovieDetails';
+const boton = require("../images/atras.png");
 
 const screenHeight = Dimensions.get("screen").height;
 
 interface Props extends StackScreenProps<RootStackParams,"Detail">{}
 
-export const DetailScreen = ({route}: Props)  => {
+export const DetailScreen = ({route, navigation}: Props)  => {
   
   const movie = route.params;
   const urlImage = `https://image.tmdb.org/t/p/w500${movie?.poster_path}`
+
+  const {isLoading, cast, movieFull} = useMovieDetail(movie.id)
+  
+  
+  
 
   return (
     <ScrollView>
@@ -29,13 +36,18 @@ export const DetailScreen = ({route}: Props)  => {
         <Text style={styles.subtitle} >{movie.original_title}</Text>
         <Text style={styles.title} >{movie.title}</Text>
       </View>
-      <View style={styles.descriptionContainer} >
-        <Icon 
-          name="star-outline"
-          color="gray"
-          size={20}
-        />
-      </View>
+        {
+          isLoading ? <ActivityIndicator size={35} color="grey" style={{marginTop:20}}
+          /> : <MovieDetails movieFull={movieFull!} cast={cast} />
+        }
+        <View style={styles.btnBack} >
+          <TouchableOpacity  onPress={()=>{navigation.pop()}} > 
+            <Image 
+              source={boton}
+              style={{width:60, height:60}}
+              />
+          </TouchableOpacity>
+        </View>
     </ScrollView>
   )
 }
@@ -52,15 +64,15 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.24,
     shadowRadius: 7,
-    elevation: 9,
+    elevation: 2,
   },
   imageRadius:{
     flex:1,
     overflow:"hidden",
     borderBottomEndRadius:25,
     borderBottomStartRadius:25,
-      
-    },
+    resizeMode:"cover",
+  },
   posterImage:{
     flex:1,
   },
@@ -76,6 +88,10 @@ const styles = StyleSheet.create({
     color:"black",
     fontSize:20,
     fontWeight:"bold",
-  }
-
+  },
+  btnBack: {
+    position: "absolute",
+    top: 20, 
+    left: 10,
+  },
 });
