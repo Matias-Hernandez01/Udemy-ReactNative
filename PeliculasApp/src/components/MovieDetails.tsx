@@ -11,7 +11,6 @@ interface Props {
   cast: Cast[],
 }
 
-
 export const MovieDetails = ({movieFull, cast} : Props) => {
  
   const movieRating = Math.floor(movieFull.vote_average) > 6;
