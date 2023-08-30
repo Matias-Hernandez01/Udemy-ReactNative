@@ -19,8 +19,6 @@ export const DetailScreen = ({route, navigation}: Props)  => {
 
   const {isLoading, cast, movieFull} = useMovieDetail(movie.id)
   
-  
-  
 
   return (
     <ScrollView>
