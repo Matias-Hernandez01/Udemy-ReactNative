@@ -13,7 +13,6 @@ const {width: windowWidth} = Dimensions.get("window")
 export const HomeScreen = () => {
 
   const {nowPlaying,popular,topRated, upcoming, isLoading} = UseMovies();
-
   const {top} = useSafeAreaInsets()
 
   if(isLoading){
