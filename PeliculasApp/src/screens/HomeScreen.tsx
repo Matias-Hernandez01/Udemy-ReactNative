@@ -6,6 +6,7 @@ import Carousel from 'react-native-snap-carousel';
 import { UseMovies } from "../hooks/useMovies"
 import { MovieCard } from "../components/MovieCard";
 import { FlatListComponents } from "../components/FlatListComponents";
+import { GradientBackground } from "../components/GradientBackground";
 
 
 const {width: windowWidth} = Dimensions.get("window")
@@ -22,27 +23,29 @@ export const HomeScreen = () => {
   }
 
   return (
+    <GradientBackground  >
 
-    <ScrollView>
+     <ScrollView>
 
-    <View style={{marginTop:top + 20}} >
+      <View style={{marginTop:top + 20}} >
       
-     <View style={{height:440}} >
-     <Carousel 
-      vertical={ false }
-      data={nowPlaying}
-      renderItem={({item}:any)=> <MovieCard movie={item}/>  }
-      sliderWidth={windowWidth}
-      itemWidth={300}
-      inactiveSlideOpacity={0.9}
-      />
-      </View>
+       <View style={{height:440}} >
+          <Carousel 
+            vertical={ false }
+            data={nowPlaying}
+            renderItem={({item}:any)=> <MovieCard movie={item}/>  }
+            sliderWidth={windowWidth}
+            itemWidth={300}
+            inactiveSlideOpacity={0.9}
+           />
+        </View>
         
-      <FlatListComponents title="Popular" data={popular}/>
-      <FlatListComponents title="Top Rated" data={topRated}/>
-      <FlatListComponents title="Upcoming" data={upcoming}/>
+            <FlatListComponents title="Popular" data={popular}/>
+            <FlatListComponents title="Top Rated" data={topRated}/>
+            <FlatListComponents title="Upcoming" data={upcoming}/>
         
-      </View>
-    </ScrollView>
+        </View>
+      </ScrollView>
+    </GradientBackground>
   )
 }
