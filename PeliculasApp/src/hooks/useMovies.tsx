@@ -47,7 +47,7 @@ export const UseMovies = () => {
  
   return {
     isLoading,
-    ...moviesState
+    ...moviesState,
   }
   
 }
