@@ -34,10 +34,10 @@ export const useAnimation = () => {
     
     position.setValue(initPosition)
     Animated.timing(position, {
-      toValue:0,
+      toValue:0,  
       duration: 400,
       useNativeDriver: true,
-      // easing:Easing.bounce,
+      easing:Easing.bounce,
     }).start()
 
   }
