@@ -5,39 +5,17 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 import { styles } from '../theme/appTheme';
 import { FlatListMenuItem } from "../components/FlatListMenuItem";
-
-
-const menuItems : MenuItem[] = [
-  {
-    name: "Animation 101",
-    icon: "cube-outline",
-    component: "Animation101Screens"
-  },
-  {
-    name: "Animation 102",
-    icon: "cellular-outline",
-    component: "Animation102Screens"
-  }
-]
+import {menuItems} from "../data/menuItems";
+import { HeaderTitle } from "../components/HeaderTitle";
 
 
 export const Home = () => {
-
-  const {top} = useSafeAreaInsets()
-
-  const renderListHeader = ()=>{
-    return (
-      <View style={{marginTop: top + 20, marginBottom: 20}} >
-        <Text style={styles.title} >Opciones de menú</Text>
-      </View>
-    )
-  }
 
   const itemSeparator = ()=>{
     return (
       <View 
         style={{
-          backgroundColor:"black",
+          backgroundColor:"#5856D6",
            borderBottomWidth: 1,
            opacity: 0.4,
            marginVertical:8
@@ -46,14 +24,13 @@ export const Home = () => {
     )
   }
 
-
   return (
     <View style={{flex:1, ...styles.globalMargin}} >
       <FlatList 
         data={menuItems}
         renderItem={(item)=> <FlatListMenuItem menuItem={item.item} />}
         keyExtractor={(item)=>item.name}
-        ListHeaderComponent={renderListHeader}
+        ListHeaderComponent={< HeaderTitle title="Opciones de Menú" />}
         ItemSeparatorComponent={itemSeparator}
       />
     </View>
