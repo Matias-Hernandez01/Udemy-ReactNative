@@ -12,8 +12,6 @@ export const CumstomSwitch = ({isOn, onChange}: Props) => {
 
   const [isEnabled, setIsEnabled] = useState<boolean>(isOn);
 
-  console.log(isOn)
-
   const toggleSwitch = () =>{
     setIsEnabled(!isEnabled);
     onChange(!isEnabled);
