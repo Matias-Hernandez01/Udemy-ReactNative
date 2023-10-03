@@ -32,8 +32,13 @@ export const menuItems : MenuItem[] = [
     component:"PullToRefreshScreens"
   },
   {
-    name:"SectionList",
+    name:"Section List",
     icon:"list-outline",
     component:"SectionListScreens"
+  },
+  {
+    name:"Modal Screen",
+    icon:"copy-outline",
+    component:"ModalScreens"
   }
 ]
