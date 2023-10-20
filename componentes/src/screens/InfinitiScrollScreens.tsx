@@ -1,15 +1,12 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View, FlatList} from 'react-native';
+import {StyleSheet, Text, View, FlatList, Image} from 'react-native';
 
 import {HeaderTitle} from '../components/HeaderTitle';
 import {styles} from '../theme/appTheme';
+import FadeInImage from '../components/FadeInImage';
 
 export const InfinitiScrollScreens = () => {
   const [numbers, setNumbers] = useState([0, 1, 2, 3, 4, 5]);
-
-  const renderItem = (item: number) => {
-    return <Text style={styless.textItem}>{item}</Text>;
-  };
 
   const loadMore = () => {
     const newArray: number[] = [];
@@ -18,6 +15,10 @@ export const InfinitiScrollScreens = () => {
     }
 
     setNumbers([...numbers, ...newArray]);
+  };
+
+  const renderItem = (item: number) => {
+    return <FadeInImage uri={`https://picsum.photos/id/${item}/200/300`} />;
   };
 
   return (
