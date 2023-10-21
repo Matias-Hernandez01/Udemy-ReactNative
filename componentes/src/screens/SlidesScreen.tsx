@@ -1,3 +1,4 @@
+import {StackScreenProps} from '@react-navigation/stack';
 import React, {useState} from 'react';
 import {
   View,
@@ -7,11 +8,14 @@ import {
   Dimensions,
   Image,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
-import {HeaderTitle} from '../components/HeaderTitle';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
+const {width: screenWidth} = Dimensions.get('window');
+
+interface Props extends StackScreenProps<any, any> {}
 
 interface Slide {
   title: string;
@@ -37,7 +41,7 @@ const items: Slide[] = [
   },
 ];
 
-export const SlidesScreen = () => {
+export const SlidesScreen = ({navigation}: Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const renderItem = (item: Slide) => {
@@ -75,16 +79,33 @@ export const SlidesScreen = () => {
         layout="default"
         onSnapToItem={index => setActiveIndex(index)}
       />
-      <Pagination
-        dotsLength={items.length}
-        activeDotIndex={activeIndex}
-        dotStyle={{
-          width: 10,
-          height: 10,
-          borderRadius: 10,
-          backgroundColor: '#5856D6',
-        }}
-      />
+      <View style={styles.containerButton}>
+        <Pagination
+          dotsLength={items.length}
+          activeDotIndex={activeIndex}
+          dotStyle={{
+            width: 10,
+            height: 10,
+            borderRadius: 10,
+            backgroundColor: '#5856D6',
+          }}
+        />
+        {activeIndex + 1 === items.length && (
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Home')}
+            activeOpacity={0.5}
+            style={styles.button}>
+            <Icon
+              name="chevron-forward-outline"
+              size={30}
+              style={{color: '#fff'}}
+            />
+            <Text style={{fontSize: 20, color: '#fff', textAlign: 'center'}}>
+              Entrar
+            </Text>
+          </TouchableOpacity>
+        )}
+      </View>
     </SafeAreaView>
   );
 };
@@ -98,5 +119,21 @@ const styles = StyleSheet.create({
   subtitle: {
     color: 'black',
     fontSize: 15,
+  },
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    backgroundColor: '#5856D6',
+    height: 40,
+    width: 120,
+    marginBottom: 20,
+    borderRadius: 10,
+  },
+  containerButton: {
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontWeight: 'bold',
   },
 });
